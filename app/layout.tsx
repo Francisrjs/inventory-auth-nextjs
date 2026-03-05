@@ -35,7 +35,8 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navigation session={session} />
+        {/* TODO - Remove Navigation when sidebar is implemented */}
+        {/* <Navigation session={session} /> */}
         {children}
       </body>
     </html>

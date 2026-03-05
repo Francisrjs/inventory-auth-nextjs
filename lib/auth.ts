@@ -3,6 +3,8 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { PrismaClient } from "./generated/prisma";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { nextCookies } from "better-auth/next-js";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL,
@@ -31,3 +33,13 @@ export const auth = betterAuth({
   },
   plugins: [nextCookies()],
 });
+
+export async function getCurrentUser() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (!session) {
+    redirect("/sign-in");
+  }
+  return session.user;
+}
