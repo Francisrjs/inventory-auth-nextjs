@@ -38,12 +38,21 @@ export default function ProductChart({ data }: { data: ChartData[] }) {
             allowDecimals={false}
           />
 
-          <Tooltip />
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "#fff",
+              borderRadius: "8px",
+              border: "1px solid #e5e7eb",
+            }}
+          />
           <Area
             type="monotone"
             dataKey="products"
             stroke="#8884d8"
             fill="#8884d8"
+            strokeWidth={2}
+            dot={{ fill: "#8b5cf6", strokeWidth: 2, r: 4 }}
+            activeDot={{ r: 6, stroke: "#8b5cf6", strokeWidth: 2 }}
           />
         </AreaChart>
       </ResponsiveContainer>
